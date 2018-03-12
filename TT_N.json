@@ -1,0 +1,40 @@
+{
+    "title": "ネット閲覧",
+    "parts": [{
+            "period": 2,
+            "contents": "用意するものの確認、Basic編の流れ"
+        },
+        {
+            "period": 3,
+            "contents": "ネット閲覧の流れ、ブラウザ"
+        },
+        {
+            "period": 2,
+            "contents": "タブ"
+        },
+        {
+            "period": 1,
+            "contents": "URL"
+        },
+        {
+            "period": 1,
+            "contents": "ブックマーク"
+        },
+        {
+            "period": 1,
+            "contents": "ダウンロード・アップロード"
+        },
+        {
+            "period": 8,
+            "contents": "著作権、差別・業務妨害、SNS、共用のパソコン"
+        },
+        {
+            "period": 6,
+            "contents": "アカウント、パスワード作成、パスワード管理"
+        },
+        {
+            "period": 1,
+            "contents": "まとめ"
+        }
+    ]
+}

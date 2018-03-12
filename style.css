@@ -1,0 +1,29 @@
+
+* {
+    user-select: none;
+}
+
+@font-face {
+    font-family: "851テガキカクット";
+    src: url(./851H-kktt_004.ttf);
+}
+
+
+body {
+    background: lightgray;
+}
+
+#background {
+    background: black;
+    
+}
+
+.module {
+    background: white;
+    border-radius: 10px;
+}
+
+.time_display {
+    font-family: "851テガキカクット", "arial";
+    font-size: 1.2em;
+}
