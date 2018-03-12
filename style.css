@@ -13,17 +13,49 @@ body {
     background: lightgray;
 }
 
-#background {
-    background: black;
-    
+p {
+    margin: 2px;
 }
 
 .module {
     background: white;
-    border-radius: 10px;
+    border-radius: 2px;
 }
 
 .time_display {
-    font-family: "851テガキカクット", "arial";
-    font-size: 1.2em;
+    font: 1.2em "851テガキカクット", "arial";
+}
+
+.graph {
+    position: relative;
+    margin: auto;
+    width: 90%;
+    height: 1.5em;
+    border: 1px solid #7ac2f1;
+    white-space: nowrap;
+}
+.graph_bar {
+    display: inline-block;
+    height: 1.2em;
+    margin: 2px 0px;
+}
+.elapsed_time_bar {
+    width: 50%;
+    background: #7ac2f1;
+}
+.remaining_time_bar {
+    float: right;
+    width: 50%;
+    background: white;
+}
+
+.elapsed_time {
+    margin: auto;
+    position: absolute;
+    left: 0px;
+}
+.remaining_time {
+    margin: auto;
+    position: absolute;
+    right: 0px;
 }

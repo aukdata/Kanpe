@@ -6,7 +6,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-    <script src="./script.js"></script>
     <link rel="stylesheet" type="text/css" href="./style.css" />
 </head>
 
@@ -19,49 +18,36 @@
 
     <div id="display">
         <div class="module">
-            <ul>
-                <li>
-                    <p>タイトル</p>
-                    <p id="section_title">───</p>
-                </li>
-                <li>
-                    <p>全体経過時間</p>
-                    <p id="section_elapsed_time" class="time_display">───</p>
-                </li>
-                <li>
-                    <p>全体残り時間</p>
-                    <p id="section_remaining_time" class="time_display">───</p>
-                </li>
+            <p>タイトル</p>
+            <p id="section_title">───</p>
 
-                <li>
-                    <p>予定との差</p>
-                    <p id="gap_time" class="time_display">───</p>
-                </li>
-            </ul>
+            <div class="graph">
+                <div id="section_elapsed_time_bar" class="graph_bar elapsed_time_bar"></div>
+                <div id="section_remaining_time_bar" class="graph_bar remaining_time_bar"></div>
+                <span id="section_elapsed_time" class="time_display elapsed_time"></span>
+                <span id="section_remaining_time" class="time_display remaining_time"></span>
+            </div>
+            <p>予定との差</p>
+            <span id="gap_time" class="time_display">───</span>
         </div>
 
         <div class="module">
-            <ul>
-                <li>
-                    <p>現在のパート内容</p>
-                    <p id="present_part_contents">───</p>
-                </li>
-                <li>
-                    <p>現在のパート時間</p>
-                    <p id="present_part_elapsed_time" class="time_display">───</p>
-                </li>
-                <li>
-                    <p>現在のパート残り時間</p>
-                    <p id="present_part_remaining_time" class="time_display">───</p>
-                </li>
+            <p>現在のパート内容</p>
+            <p id="present_part_contents">───</p>
 
-                <li>
-                    <p>次のパート内容</p>
-                    <p id="next_part_contents">───</p>
-                </li>
-            </ul>
+            <div class="graph">
+                <div id="present_part_elapsed_time_bar" class="graph_bar elapsed_time_bar"></div>
+                <div id="present_part_remaining_time_bar" class="graph_bar remaining_time_bar"></div>
+                <span id="present_part_elapsed_time" class="time_display elapsed_time"></span>
+                <span id="present_part_remaining_time" class="time_display remaining_time"></span>
+            </div>
+
+            <p>次のパート内容</p>
+            <p id="next_part_contents">───</p>
         </div>
     </div>
+
+    <script src="./script.js"></script>
 </body>
 
 </html>
