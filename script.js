@@ -4,9 +4,9 @@
 		let minute = Math.floor(Math.abs(milisecond) / 1000 / 60) % 60
 		let hour = Math.floor(Math.abs(milisecond) / 1000 / 60 / 60)
 
-		return (milisecond > -1000 ? "" : "- ")
-		 + (hour > 0 ? hour + "h " : "")
-		 + (minute > 0 ? minute + "m " : "") + second + "s"
+		return (milisecond > -1000 ? "" : "- ") +
+			(hour > 0 ? hour + "h " : "") +
+			(minute > 0 ? minute + "m " : "") + second + "s"
 	}
 
 	function sum(arr) {
@@ -78,6 +78,7 @@
 				element_present_part_elapsed_time_bar, element_present_part_remaining_time_bar,
 				present_part_elapsed_time, present_part_remaining_time)
 		}
+
 		function updateGraph(rele_text, lele_text, rele_bar, lele_bar, rval, lval) {
 			rele_text.textContent = formatTime(rval)
 			lele_text.textContent = formatTime(lval)
@@ -122,17 +123,17 @@
 
 			updatePart()
 			updateTime()
-
-			// Update every 100ms
-			window.setInterval(() => {
-				updateTime()
-			}, 100)
-
-			// When screen is tappped
-			document.addEventListener("click", () => {
-				nextPart()
-			})
 		}
+
+		// Update every 100ms
+		window.setInterval(() => {
+			updateTime()
+		}, 100)
+
+		// When screen is tappped
+		document.addEventListener("click", () => {
+			nextPart()
+		})
 
 		// When json file loaded
 		document.getElementById("file_selector").addEventListener("change", e => {
