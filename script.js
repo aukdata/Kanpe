@@ -138,7 +138,7 @@
 		// When json file loaded
 		document.getElementById("file_selector").addEventListener("change", e => {
 			const f = e.target.files[0]
-			if (f.type === "application/json") {
+			if (true || f.type === "application/json") {
 				const reader = new FileReader()
 				reader.readAsText(f)
 				reader.addEventListener("load", () => {
