@@ -138,19 +138,15 @@
 		// When json file loaded
 		document.getElementById("file_selector").addEventListener("change", e => {
 			const f = e.target.files[0]
-			if (true || f.type === "application/json") {
-				const reader = new FileReader()
-				reader.readAsText(f)
-				reader.addEventListener("load", () => {
-					const data = JSON.parse(reader.result)
-					section_title = data.title
-					parts = data.parts
+			const reader = new FileReader()
+			reader.readAsText(f)
+			reader.addEventListener("load", () => {
+				const data = JSON.parse(reader.result)
+				section_title = data.title
+				parts = data.parts
 
-					initialize()
-				})
-			} else {
-				alert("JSONではありません")
-			}
+				initialize()
+			})
 		})
 	})
 })()
