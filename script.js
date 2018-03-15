@@ -44,6 +44,51 @@
 		const element_next_part_contents = document.getElementById("next_part_contents")
 
 
+		// When json file loaded
+		document.getElementById("file_selector").addEventListener("change", e => {
+			const f = e.target.files[0]
+			const reader = new FileReader()
+			reader.readAsText(f)
+			reader.addEventListener("load", () => {
+				const data = JSON.parse(reader.result)
+				section_title = data.title
+				parts = data.parts
+
+				initialize()
+			})
+		})
+
+		// When screen is tappped
+		document.addEventListener("click", () => {
+			nextPart()
+		})
+
+		// Update every 100ms
+		window.setInterval(() => {
+			updateTime()
+		}, 100)
+
+
+		function initialize() {
+			let accumlation = 0
+			for (part of parts) {
+				accumlation += part.period
+				part.until = accumlation * 60 * 1000
+				part.periodms = part.period * 60 * 1000
+			}
+
+			element_section_title.textContent = section_title
+
+			section_start_time = Date.now()
+			elapsed_time_till_prev_part = 0
+			part_lap_elapsed_time = []
+		
+			index = 0
+		
+			updatePart()
+			updateTime()
+		}
+
 		function updatePart() {
 			if (parts != null) {
 				element_present_part_contents.textContent = index < parts.length ? parts[index].contents : "───"
@@ -79,16 +124,16 @@
 				present_part_elapsed_time, present_part_remaining_time)
 		}
 
-		function updateGraph(rele_text, lele_text, rele_bar, lele_bar, rval, lval) {
-			rele_text.textContent = formatTime(rval)
-			lele_text.textContent = formatTime(lval)
+		function updateGraph(element_elapsed_text, element_remaining_text, element_elapsed_bar, element_remaining_bar, elapsed, remaining) {
+			element_elapsed_text.textContent = formatTime(elapsed)
+			element_remaining_text.textContent = formatTime(remaining)
 
-			if (lval >= 0) {
-				rele_bar.style.width = "" + (100 * rval / (lval + rval)) + "%"
-				lele_bar.style.width = "" + (100 * lval / (lval + rval)) + "%"
+			if (remaining >= 0) {
+				element_elapsed_bar.style.width = "" + (100 * elapsed / (remaining + elapsed)) + "%"
+				element_remaining_bar.style.width = "" + (100 * remaining / (remaining + elapsed)) + "%"
 			} else {
-				rele_bar.style.width = "100%"
-				lele_bar.style.width = "0%"
+				element_elapsed_bar.style.width = "100%"
+				element_remaining_bar.style.width = "0%"
 			}
 		}
 
@@ -105,48 +150,5 @@
 
 			updatePart()
 		}
-
-		function initialize() {
-			let accumlation = 0
-			for (part of parts) {
-				accumlation += part.period
-				part.until = accumlation * 60 * 1000
-				part.periodms = part.period * 60 * 1000
-			}
-
-			element_section_title.textContent = section_title
-
-			section_start_time = Date.now()
-			elapsed_time_till_prev_part = 0
-
-			index = 0
-
-			updatePart()
-			updateTime()
-		}
-
-		// Update every 100ms
-		window.setInterval(() => {
-			updateTime()
-		}, 100)
-
-		// When screen is tappped
-		document.addEventListener("click", () => {
-			nextPart()
-		})
-
-		// When json file loaded
-		document.getElementById("file_selector").addEventListener("change", e => {
-			const f = e.target.files[0]
-			const reader = new FileReader()
-			reader.readAsText(f)
-			reader.addEventListener("load", () => {
-				const data = JSON.parse(reader.result)
-				section_title = data.title
-				parts = data.parts
-
-				initialize()
-			})
-		})
 	})
 })()
