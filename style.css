@@ -42,11 +42,15 @@ p {
 .elapsed_time_bar {
     width: 50%;
     background: #7ac2f1;
+
+    transition: all 10ms 0s ease;
 }
 .remaining_time_bar {
     float: right;
     width: 50%;
     background: white;
+
+    transition: all 10ms 0s ease;
 }
 
 .elapsed_time {
@@ -58,4 +62,24 @@ p {
     margin: auto;
     position: absolute;
     right: 0px;
+}
+
+
+#pause_button {
+    position: fixed;
+    height: 80px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+
+    background: limegreen;
+    transition: all 500ms 0s ease;
+}
+#pause_image {
+    display: block;
+    margin: 15px auto;
+    width: 50px;
+    height: 50px;
+
+    transition: all 500ms 0s ease;
 }

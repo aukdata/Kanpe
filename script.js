@@ -1,4 +1,4 @@
-(() => {
+//(() => {
 	function formatTime(milisecond) {
 		let second = Math.floor(Math.abs(milisecond) / 1000) % 60
 		let minute = Math.floor(Math.abs(milisecond) / 1000 / 60) % 60
@@ -13,8 +13,8 @@
 		return arr.reduce((a, b) => a + b)
 	}
 
-	let section_start_time = 0
-	let elapsed_time_till_prev_part = 0
+	let section_timer = new Timer()
+	let part_timer = new Timer()
 	let part_lap_elapsed_time = []
 
 	let section_title = ""
@@ -54,6 +54,7 @@
 				section_title = data.title
 				parts = data.parts
 
+				element_section_title.textContent = section_title
 				initialize()
 			})
 		})
@@ -70,23 +71,26 @@
 
 
 		function initialize() {
+			calcEndTime()
+
+			section_timer.start()
+			part_timer.start()
+			pause()
+
+			index = 0
+			part_lap_elapsed_time = []
+
+			updatePart()
+			updateTime()
+		}
+
+		function calcEndTime() {
 			let accumlation = 0
 			for (part of parts) {
 				accumlation += part.period
 				part.until = accumlation * 60 * 1000
 				part.periodms = part.period * 60 * 1000
 			}
-
-			element_section_title.textContent = section_title
-
-			section_start_time = Date.now()
-			elapsed_time_till_prev_part = 0
-			part_lap_elapsed_time = []
-		
-			index = 0
-		
-			updatePart()
-			updateTime()
 		}
 
 		function updatePart() {
@@ -102,22 +106,27 @@
 		function updateTime() {
 			if (parts == null) return
 
-			let elapsed_time = Date.now() - section_start_time
+			let elapsed_time = section_timer.milliseconds()
 			let remaining_time = parts[parts.length - 1].until - elapsed_time
 			updateGraph(element_section_elapsed_time, element_section_remaining_time,
 				element_section_elapsed_time_bar, element_section_remaining_time_bar,
 				elapsed_time, remaining_time)
 
+
 			let gap_period = 0
-			let present_part_ending_elapsed_time = (index - 1 >= 0 ? part_lap_elapsed_time[index - 1] : 0) + parts[index].periodms
+			let elapsed_time_till_prev_part = index - 1 >= 0 ? part_lap_elapsed_time[index - 1] : 0
+			let planned_elapsed_time_till_prev_part = index - 1 >= 0 ? parts[index - 1].until : 0
+			let present_part_ending_elapsed_time = elapsed_time_till_prev_part + parts[index].periodms
+
 			if (elapsed_time > present_part_ending_elapsed_time) {
-				gap_period = elapsed_time_till_prev_part - (index - 1 >= 0 ? parts[index - 1].until : 0) + elapsed_time - present_part_ending_elapsed_time
+				gap_period = elapsed_time_till_prev_part - planned_elapsed_time_till_prev_part + elapsed_time - present_part_ending_elapsed_time
 			} else {
-				gap_period = elapsed_time_till_prev_part - (index - 1 >= 0 ? parts[index - 1].until : 0)
+				gap_period = elapsed_time_till_prev_part - planned_elapsed_time_till_prev_part
 			}
 			element_gap_time.textContent = formatTime(gap_period)
 
-			let present_part_elapsed_time = elapsed_time - (index - 1 >= 0 ? part_lap_elapsed_time[index - 1] : 0)
+
+			let present_part_elapsed_time = part_timer.milliseconds()
 			let present_part_remaining_time = parts[index].periodms - present_part_elapsed_time
 			updateGraph(element_present_part_elapsed_time, element_present_part_remaining_time,
 				element_present_part_elapsed_time_bar, element_present_part_remaining_time_bar,
@@ -140,15 +149,48 @@
 		function nextPart() {
 			if (parts == null) return
 
+			part_lap_elapsed_time.push(section_timer.milliseconds())
+
+			if (index < parts.length) {
+				part_timer.start()
+				if (section_timer.isPausing()) {
+					part_timer.pause()
+				}
+			} else {
+				updateTime()
+				parts = null
+			}
+
 			index++
-			if (index >= parts.length) parts = null
-
-			let elapsed_time = Date.now() - section_start_time
-			elapsed_time_till_prev_part = elapsed_time
-
-			part_lap_elapsed_time.push(elapsed_time)
-
 			updatePart()
 		}
 	})
-})()
+
+	const element_pause_button = document.getElementById("pause_button")
+	const element_pause_image = document.getElementById("pause_image")
+
+	element_pause_button.addEventListener("click", e => {
+		if (section_timer.isPausing()) {
+			remuse()
+		} else {
+			pause()
+		}
+		e.stopPropagation()
+	})
+	
+	function pause() {
+		section_timer.pause()
+		part_timer.pause()
+		element_pause_button.style.background = "limegreen"
+		element_pause_image.src = "./assets/remuse.png"
+		element_pause_image.alt = "Remuse"
+	}
+
+	function remuse() {
+		section_timer.remuse()
+		part_timer.remuse()
+		element_pause_button.style.background = "red"
+		element_pause_image.src = "./assets/pause.png"
+		element_pause_image.alt = "Pause"
+	}
+//})()
