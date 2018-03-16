@@ -10,64 +10,95 @@
 
 
 body {
-    background: lightgray;
+    background: whitesmoke;
 }
 
 p {
-    margin: 2px;
+    margin: 0px 2px;
+}
+
+.item_name {
+    font-size: 0.8em;
+    color: lightslategrey;
+    margin-bottom: 2px;
 }
 
 .module {
     background: white;
-    border-radius: 2px;
+    border-radius: 4px;
+    margin: 8px 0px;
+    padding: 8px;
 }
 
 .time_display {
     font: 1.2em "851テガキカクット", "arial";
 }
 
+
 .graph {
     position: relative;
     margin: auto;
-    width: 90%;
-    height: 1.5em;
-    border: 1px solid #7ac2f1;
+    height: 20px;
+
+    padding: 2px;
+    border: 1px solid lightblue;
     white-space: nowrap;
 }
 .graph_bar {
     display: inline-block;
-    height: 1.2em;
-    margin: 2px 0px;
+    height: 20px;
+
+    margin: auto;
 }
 .elapsed_time_bar {
-    width: 50%;
-    background: #7ac2f1;
+    width: 0%;
+    background: lightblue;
 
-    transition: all 10ms 0s ease;
+    transition: all 10ms 0s linear;
 }
 .remaining_time_bar {
     float: right;
-    width: 50%;
+    width: 100%;
     background: white;
 
-    transition: all 10ms 0s ease;
+    transition: all 10ms 0s linear;
 }
 
+.graph_label {
+    position: relative;
+    top: 2px;
+    font: 1.2em "851テガキカクット", "arial";
+}
 .elapsed_time {
     margin: auto;
     position: absolute;
-    left: 0px;
+    left: 4px;
 }
 .remaining_time {
     margin: auto;
     position: absolute;
-    right: 0px;
+    right: 4px;
+}
+
+
+#gap_time {
+    position: relative;
+    left: 2px;
+    font-size: 1.5em;
+}
+
+
+#section_time_graph {
+    margin: 8px auto;
+}
+#part_time_graph {
+    margin-top: 8px;
 }
 
 
 #pause_button {
     position: fixed;
-    height: 80px;
+    height: 0px;
     left: 0px;
     right: 0px;
     bottom: 0px;

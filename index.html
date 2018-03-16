@@ -18,31 +18,34 @@
 
     <div id="display">
         <div class="module">
-            <p>タイトル</p>
+            <p class="item_name">タイトル</p>
             <p id="section_title">───</p>
 
-            <div class="graph">
+            <div id="section_time_graph" class="graph">
                 <div id="section_elapsed_time_bar" class="graph_bar elapsed_time_bar"></div>
                 <div id="section_remaining_time_bar" class="graph_bar remaining_time_bar"></div>
-                <span id="section_elapsed_time" class="time_display elapsed_time"></span>
-                <span id="section_remaining_time" class="time_display remaining_time"></span>
+                <span id="section_elapsed_time" class="time_display graph_label elapsed_time">0s</span>
+                <span id="section_remaining_time" class="time_display graph_label remaining_time">0s</span>
             </div>
-            <p>予定との差</p>
-            <span id="gap_time" class="time_display">───</span>
+
+            <p class="item_name">予定との差</p>
+            <span id="gap_time" class="time_display">± 0s</span>
         </div>
 
         <div class="module">
-            <p>現在のパート内容</p>
+            <p class="item_name">現在のパート</p>
             <p id="present_part_contents">───</p>
 
-            <div class="graph">
+            <div id="part_time_graph" class="graph">
                 <div id="present_part_elapsed_time_bar" class="graph_bar elapsed_time_bar"></div>
                 <div id="present_part_remaining_time_bar" class="graph_bar remaining_time_bar"></div>
-                <span id="present_part_elapsed_time" class="time_display elapsed_time"></span>
-                <span id="present_part_remaining_time" class="time_display remaining_time"></span>
+                <span id="present_part_elapsed_time" class="time_display graph_label elapsed_time">0s</span>
+                <span id="present_part_remaining_time" class="time_display graph_label remaining_time">0s</span>
             </div>
+        </div>
 
-            <p>次のパート内容</p>
+        <div class="module">
+            <p class="item_name">次のパート</p>
             <p id="next_part_contents">───</p>
         </div>
     </div>
