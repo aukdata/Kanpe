@@ -39,10 +39,6 @@
 	const element_next_part_contents = document.getElementById("next_part_contents")
 
 
-	const element_pause_button = document.getElementById("pause_button")
-	const element_pause_image = document.getElementById("pause_image")
-
-
 	// When json file loaded
 	document.getElementById("file_selector").addEventListener("change", e => {
 		const f = e.target.files[0]
@@ -171,6 +167,11 @@
 		parts = null
 	}
 
+
+	const element_pause_button = document.getElementById("pause_button")
+	const element_pause_image_left = document.getElementById("pause_button_image_left")
+	const element_pause_image_right = document.getElementById("pause_button_image_right")
+
 	element_pause_button.addEventListener("click", e => {
 		if (parts != null) {
 			if (section_timer.isPausing()) {
@@ -187,8 +188,8 @@
 		part_timer.pause()
 
 		element_pause_button.style.background = "limegreen"
-		element_pause_image.src = "./assets/remuse.png"
-		element_pause_image.alt = "Remuse"
+		element_pause_image_left.className = "play"
+		element_pause_image_right.className = "play"
 	}
 
 	function remuse() {
@@ -196,7 +197,7 @@
 		part_timer.remuse()
 
 		element_pause_button.style.background = "red"
-		element_pause_image.src = "./assets/pause.png"
-		element_pause_image.alt = "Pause"
+		element_pause_image_left.className = "pause"
+		element_pause_image_right.className = "pause"
 	}
 })()
