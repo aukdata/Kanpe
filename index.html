@@ -4,6 +4,7 @@
 <head>
     <title>Kanpe</title>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
 
     <link rel="stylesheet" type="text/css" href="./style.css" />
@@ -12,8 +13,9 @@
 <body>
     <div id="background"></div>
 
-    <div id="upload" class="module">
+    <div class="module">
         <input id="file_selector" type="file" />
+        <a id="converter" href="./converter/index.html">Excelファイル→JSON</a>
     </div>
 
     <div id="display">
@@ -23,7 +25,6 @@
 
             <div id="section_time_graph" class="graph">
                 <div id="section_elapsed_time_bar" class="graph_bar elapsed_time_bar"></div>
-                <div id="section_remaining_time_bar" class="graph_bar remaining_time_bar"></div>
                 <span id="section_elapsed_time" class="time_display graph_label elapsed_time">0s</span>
                 <span id="section_remaining_time" class="time_display graph_label remaining_time">0s</span>
             </div>
@@ -38,7 +39,6 @@
 
             <div id="part_time_graph" class="graph">
                 <div id="present_part_elapsed_time_bar" class="graph_bar elapsed_time_bar"></div>
-                <div id="present_part_remaining_time_bar" class="graph_bar remaining_time_bar"></div>
                 <span id="present_part_elapsed_time" class="time_display graph_label elapsed_time">0s</span>
                 <span id="present_part_remaining_time" class="time_display graph_label remaining_time">0s</span>
             </div>
@@ -57,8 +57,10 @@
         </div>
     </div>
 
+    <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
     <script src="./js/timer.js"></script>
-    <script src="./js/script.js"></script>
+    <script src="./js/xlsx.js"></script>
+    <script src="./js/main.js"></script>
 </body>
 
 </html>

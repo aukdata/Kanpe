@@ -9,10 +9,17 @@
 
 body {
     background: whitesmoke;
+    font-size: 1.4em;
 }
 
 p {
     margin: 0px 2px;
+}
+
+#converter {
+    text-align: right;
+    font-size: 0.6em;
+    color: rgb(89, 194, 194);
 }
 
 .item_name {
@@ -32,51 +39,37 @@ p {
     font: 1.2em "851テガキカクット", "arial";
 }
 
+
 .graph {
     position: relative;
+    height: 1.2em;
     margin: auto;
-    height: 20px;
-    padding: 2px;
     border: 1px solid lightblue;
-    white-space: nowrap;
+    padding: 1px;
 }
 
 .graph_bar {
-    display: inline-block;
-    height: 20px;
-    margin: auto;
-}
-
-.elapsed_time_bar {
+    box-sizing: border-box;
     width: 0%;
+    height: 100%;
     background: lightblue;
     transition: all 10ms 0s linear;
 }
 
-.remaining_time_bar {
-    float: right;
-    width: 100%;
-    background: white;
-    transition: all 10ms 0s linear;
-}
-
 .graph_label {
-    position: relative;
+    position: absolute;
     top: 2px;
     font: 1.2em "851テガキカクット", "arial";
 }
 
 .elapsed_time {
-    margin: auto;
-    position: absolute;
     left: 4px;
 }
 
 .remaining_time {
-    margin: auto;
-    position: absolute;
     right: 4px;
 }
+
 
 #gap_time {
     position: relative;
