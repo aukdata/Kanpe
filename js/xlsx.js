@@ -1,4 +1,4 @@
-
+// (c) 2018 aukdata
 function convertXlsx(data) {
     const workbook = XLSX.read(data, {
         type: "binary"

@@ -1,3 +1,4 @@
+// (c) 2018 aukdata
 (() => {
 	function formatTime(milliseconds, force_sign = false) {
 		let second = Math.floor(Math.abs(milliseconds) / 1000) % 60
