@@ -18,7 +18,7 @@ p {
 }
 
 #converter {
-    text-align: right;
+    float: right;
     font-size: 0.6em;
     color: rgb(89, 194, 194);
 }

@@ -47,16 +47,18 @@ function convertData(name, raw) {
     let parts = []
     for (row of raw.slice(1)) {
         if (periodColumn in row) {
-            const dict = {
-                milliseconds: row[periodColumn] * 60 * 1000,
-                contents: (name === "" ? "" : name + " - ") + row[contentColumn]
+            let milliseconds = row[periodColumn] * 60 * 1000, contents = row[contentColumn]
+
+            if (contents == null) {
+                contents = "───"
             }
-            if (dict.contents == null) {
-                dict.contents = "N/A"
+            const dict = {
+                milliseconds: milliseconds,
+                contents: (name === "" ? "" : name + " - ") + contents
             }
             parts.push(dict)
         } else {
-            parts[parts.length - 1].contents += " ・ " + row[contentColumn]
+            parts[parts.length - 1].contents += " ・ " + contents
         }
     }
     return parts
