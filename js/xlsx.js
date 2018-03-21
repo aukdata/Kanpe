@@ -24,13 +24,13 @@ function getArrayOfParts(workbook, prefix = true) {
     })
 }
 
-function convertData(name, raw) {
+function convertData(sheetName, raw) {
     header = raw[0]
 
     let periodColumn = "",
         contentColumn = ""
     for (key in header) {
-        switch (header[key]) {
+        switch (key) {
             case "時間":
             case "時間(分)":
                 periodColumn = key
@@ -41,23 +41,26 @@ function convertData(name, raw) {
                 break;
         }
     }
+    console.log(header, periodColumn, contentColumn)
     if (periodColumn == "" || contentColumn == "")
         return []
 
     let parts = []
-    for (row of raw.slice(1)) {
+    for (row of raw) {
+        console.log(row, periodColumn, periodColumn in row)
         if (periodColumn in row) {
-            let milliseconds = row[periodColumn] * 60 * 1000, contents = row[contentColumn]
+            const milliseconds = row[periodColumn] * 60 * 1000,
+                contents = row[contentColumn]
 
             if (contents == null) {
                 contents = "───"
             }
-            const dict = {
+            parts.push({
                 milliseconds: milliseconds,
-                contents: (name === "" ? "" : name + " - ") + contents
-            }
-            parts.push(dict)
+                contents: (sheetName === "" ? "" : sheetName + " - ") + contents
+            })
         } else {
+            const contents = row[contentColumn]
             parts[parts.length - 1].contents += " ・ " + contents
         }
     }
