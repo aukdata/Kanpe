@@ -20,6 +20,7 @@ function getArrayOfParts(workbook, prefix = true) {
             }
         )
 
+        console.log(raw)
         return convertData(multiple && prefix ? sheetName : "", raw)
     })
 }
@@ -49,7 +50,7 @@ function convertData(sheetName, raw) {
     for (row of raw) {
         console.log(row, periodColumn, periodColumn in row)
         if (periodColumn in row) {
-            const milliseconds = row[periodColumn] * 60 * 1000,
+            let milliseconds = row[periodColumn] * 60 * 1000,
                 contents = row[contentColumn]
 
             if (contents == null) {

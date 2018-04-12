@@ -1,3 +1,4 @@
+// (c) 2018 aukdata
 class Timer {
     constructor() {
         this.reset()
